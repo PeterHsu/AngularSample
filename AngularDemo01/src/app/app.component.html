@@ -1,0 +1,47 @@
+<h1>
+    {{title}}
+</h1>
+<div class="ui-fluid">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3">
+                <div class="ui-grid-col-3">
+                    <label for="_id" style="vertical-align: middle">ID:</label>
+                </div>
+                <div class="ui-grid-col-9">
+                    <input #_id pInputText/>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <div class="ui-grid-col-3">
+                    <label for="name">Name:</label>
+                </div>
+                <div class="ui-grid-col-9">
+                    <input #name pInputText/>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <div class="ui-grid-col-3">
+                    <label for="owner ">Owner:</label>
+                </div>
+                <div class="ui-grid-col-9">
+                    <input #owner pInputText/><br>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <button pButton label="InsertWithID" (click)="InsertWithID(_id.value,name.value,owner.value)" style="width: 120px"></button>
+                <button pButton label="InsertWithoutID" (click)="InsertWithoutID(name.value,owner.value)" style="width: 140px"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dataTable [value]="assets" [editable]="true">
+    <p-column header="操作">
+        <ng-template let-row="rowData" pTemplate="body">
+            <button (click)="Delete(row)">刪除</button>
+            <button (click)="Update(row)">儲存</button>
+        </ng-template>
+    </p-column>
+    <p-column field="name" header="Name" [editable]="true"></p-column>
+    <p-column field="owner" header="Owner" [editable]="true"></p-column>
+</p-dataTable>
